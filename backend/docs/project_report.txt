@@ -1,0 +1,79 @@
+ARJUNA'S ARROW (Project STEG) - Comprehensive Project Report
+
+1. Project Overview
+ARJUNA'S ARROW (Project STEG) is a military-grade, highly secure communication platform designed to facilitate covert intelligence transmission. By combining advanced cryptographic algorithms (AES-256 + RSA) with cutting-edge visual steganography (LSB) and audio-to-spectrogram conversions (ARSS), the system ensures that highly classified audio intelligence can be transmitted across networks without raising suspicion. To any outside observer or network packet sniffer, the transmissions appear as ordinary, harmless image files.
+
+2. System Architecture & Tech Stack
+The project is built on a modern, decoupled architecture ensuring high performance and security.
+
+Frontend (User Interface)
+- Framework: Next.js (React)
+- Styling: Tailwind CSS (Custom "Dark Olive and Amber" tactical military design system)
+- Features: Client-side routing, JWT-based authentication state management, live Web Audio API integration for real-time intelligence recording, and dynamic, immersive UI components (Security Radar, Mission Objectives).
+
+Backend (API & Processing)
+- Framework: FastAPI (Python)
+- Database: SQLite with SQLAlchemy ORM
+- Authentication: PyJWT (JSON Web Tokens), Passlib (PBKDF2-SHA256 password hashing)
+- Cryptography: Python "cryptography" library (AES-GCM for symmetric data, RSA for key exchange)
+- Audio Processing: librosa, soundfile, numpy (ARSS Spectrogram conversion)
+- Steganography: OpenCV (cv2), numpy (LSB Image manipulation)
+
+
+3. Core Technologies & Working Mechanism
+The true power of Arjuna's Arrow lies in its Transmission Pipeline, which processes intelligence in four distinct phases:
+
+Phase 1: ARSS Audio Conversion
+1. Live audio is recorded via the Operative Terminal or an existing .wav/.mp3 file is uploaded.
+2. The arss.py module uses librosa to compute the Mel-spectrogram of the audio.
+3. This creates a highly compressed numerical representation of the audio frequencies, significantly reducing payload size while maintaining voice intelligibility.
+4. An OpenCV visual heatmap (spectrogram) is generated for the operative's UI preview.
+
+Phase 2: Hybrid Cryptography (AES + RSA)
+1. The compressed audio data is encrypted using AES-256 (Symmetric), ensuring the data itself is impenetrable.
+2. The AES key is then encrypted using the recipient's RSA Public Key (Asymmetric). 
+3. Optional Password Lock: An additional PBKDF2 hashed password can be added to the payload for two-factor extraction.
+
+Phase 3: LSB Steganography
+1. The steg.py module takes a cover image (e.g., a generic photo) and the encrypted payload.
+2. A pseudo-random number generator (PRNG), initialized with a user-defined numeric Seed, determines the exact pixel sequence to modify.
+3. The Least Significant Bits (LSB) of the color channels in those specific pixels are overwritten with the binary data of the payload. 
+4. Because only the LSBs are altered, the visual change to the image is imperceptible to the human eye.
+
+Phase 4: Network Transmission
+1. The resulting "Stego Image" is uploaded to the backend server and routed to the recipient's Inbox.
+2. To any network monitor or database administrator, it appears strictly as standard image traffic.
+
+
+4. Role-Based Access Control (RBAC) & Module Breakdown
+The system enforces strict hierarchical access control across three primary modules.
+
+A. Global Command & Control Module (Admin)
+The Admin has root-level clearance over the entire system.
+- Provisioning: Creates both Department HQ and Soldier accounts.
+- Hierarchy Management: Can view, edit, and delete any user in the system.
+- Terminal Re-keying: Because passwords cannot be decrypted (due to PBKDF2 hashing), Admins can perform a "Terminal Re-key" to forcefully override and reset compromised passwords.
+- System Audit Logs: Real-time telemetry monitoring that tracks every action (login, transmission, deletion) across the network.
+- Global Communications & Intercepts: 
+  - Broadcast: The Admin can encode and send steganographic messages to *any* user.
+  - Wiretap/Intercepts: The Admin's inbox automatically captures *all* network traffic. They can read standard messages and download/decrypt stego images sent between *any* two operatives in the field.
+
+B. C2 Command Center Module (Department)
+Department Heads manage specific operational sectors (e.g., Signals Command, Intel Command).
+- Unit Provisioning: Can create new Soldier accounts, but *only* within their assigned department.
+- Operatives Roster: A management table allowing them to view, edit, or delete soldiers under their direct command. They cannot access soldiers from other departments.
+- Department Comms: They can encode messages, send intel, and decode intercepted signals sent directly to their HQ.
+
+C. Operative Terminal Module (Soldier)
+The interface used by field agents.
+- Live Intel Gathering: Integrated microphone access allows operatives to record live voice intelligence directly from the browser.
+- Encode Message: Operatives can target their Department HQ or other operatives to send stego images.
+- Decode Signal: When a stego image is received, the operative provides the exact Numeric Seed and (optional) Passphrase. The system reverses the LSB extraction, decrypts the RSA/AES layers, and uses the Griffin-Lim algorithm to reconstruct the audio file for download.
+- Tactical HUD: Features immersive visual elements like Mission Objectives, System Integrity monitors, and Security Radars to maintain a high-stress, secure operational environment.
+
+
+5. Security Features & Constraints
+- Zero-Knowledge Passwords: All user passwords are mathematically hashed. Not even the database administrator can see plaintext passwords.
+- Cascading Data Purges: If an operative is compromised and deleted by Command, all associated telemetry logs and intercepted messages are automatically purged from the database to prevent orphan data tracing.
+- Self-Destructing Decodes: The system is designed so that decoded audio files and intermediate spectrograms are securely served and scheduled for deletion, preventing lingering classified data on the server filesystem.
+- PRNG Seed Dependency: Even if an enemy intercepts the stego image, they cannot extract the payload without knowing the exact numeric seed used to randomize the pixel distribution.

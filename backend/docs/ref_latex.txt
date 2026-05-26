@@ -1,0 +1,1006 @@
+\documentclass[10pt,a4paper]{report}
+\usepackage[top=50pt,bottom=50pt,left=60pt,right=70pt]{geometry}
+\usepackage{graphicx}
+\usepackage{pslatex}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[document]{ragged2e}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{listings}
+\usepackage{url}
+\usepackage{fancyhdr}
+\usepackage{tocloft}
+\usepackage{sectsty}
+\usepackage[titletoc]{appendix}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{siunitx}
+\usepackage[inline]{enumitem}
+\usepackage{multicol}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{float}
+
+
+\graphicspath{ {images/} }
+
+\title{Advanced Detection of AI-Generated Images Through Vision Transformers}
+
+\author{Adil S R\\Ashwin Binu \\ Athul Krishna V S\\ Kalidas R }
+
+\renewcommand\cftchapfont{\large\bfseries}
+\renewcommand\cftsecfont{\large}
+\renewcommand\cftfigfont{\large}
+\renewcommand\cfttabfont{\large}
+
+\renewcommand\cftchappagefont{\large\bfseries}
+\renewcommand\cftsecpagefont{\large}
+
+\renewcommand\cftchapafterpnum{\vskip20pt}
+\renewcommand\cftsecafterpnum{\vskip20pt}
+\renewcommand\cftsubsecafterpnum{\vskip16pt}
+\renewcommand\cftfigafterpnum{\vskip16pt\par}
+\renewcommand\cfttabafterpnum{\vskip16pt\par}
+
+\sectionfont{\Large\mdseries}
+\subsectionfont{\large\mdseries}
+\chapternumberfont{\LARGE\mdseries} 
+\chaptertitlefont{\huge}
+
+
+\begin{document}
+
+
+\begin{titlepage}
+	\begin{center}
+	\line(1,0){400}\\
+	[0.20in]
+	\Large\bfseries\textbf\ttfamily{ ARJUNA'S ASTHRA }\\
+	\line(1,0){400}\\
+	[1cm]
+	\textsc{\large\mdseries PROJECT REPORT PHASE II}\\	
+	[0.40cm]
+	\textsc{\large\itshape\mdseries Submitted By}\\	
+	[0.90cm]
+
+\textsc{\large  ADIL S R ( UCE22CYS003 )}\\
+\textsc{\large ASHWIN BINU ( UCE22CYS011 )}\\
+\textsc{\large ATHUL KRISHNA V S ( UCE22CYS013 )}\\
+\textsc{\large KALIDAS R ( UCE22CYS020 )}\\
+[0.90cm]
+
+    
+	\textsc{\large\itshape\mdseries in partial fulfillment for the award of the degree}\\
+	[0.40cm]
+	\textsc{\large\itshape\mdseries of}\\
+	[0.90cm]
+	\textsc{\large\bfseries BACHELOR OF TECHNOLOGY}\\
+	[0.40cm]
+	\textsc{\large\itshape\mdseries in}\\
+	[0.40cm]
+	\textsc{\large\bfseries CYBERSECURITY}\\
+	[0.40cm]
+	\textsc{\large\bfseries APJ ABDUL KALAM TECHNOLOGICAL UNIVERSITY}\\	
+	[1.5cm]
+	\begin{figure}[H]
+    \centering
+    \vspace*{.50cm}
+    \includegraphics[width=0.30\linewidth]{logo (1).png}
+    \label{fig:placeholder}
+\end{figure}
+    \vspace*{.50cm}
+	\textsc{\large\bfseries DEPARTMENT OF CYBERSECURITY}\\
+	[0.40cm]
+	\textsc{\large\bfseries UNIVERSITY COLLEGE OF ENGINEERING, THODUPUZHA}\\
+	[0.40cm]
+	\textsc{\large\bfseries APRIL 2026}\\
+
+	\end{center}
+
+\end{titlepage}
+
+\newpage
+
+	\begin{center}
+
+	\line(1,0){400}\\
+	[0.20in]
+	\Large\bfseries\textbf\ttfamily{ ARJUNA'S ASTHRA }\\
+
+	\line(1,0){400}\\
+	[0.6cm]
+	\textsc{\large\mdseries PROJECT REPORT PHASE II}\\	
+	[0.15cm]
+	\textsc{\large\itshape\mdseries Submitted By}\\	
+	[0.15cm]
+
+\textsc{\large  ADIL S R ( UCE22CYS003 )}\\
+\textsc{\large ASHWIN BINU ( UCE22CYS011 )}\\
+\textsc{\large ATHUL KRISHNA V S ( UCE22CYS013 )}\\
+\textsc{\large KALIDAS ( UCE22CYS020 )}\\
+
+	
+	\textsc{\large\itshape\mdseries in partial fulfillment for the award of the degree}\\
+	[0.40cm]
+	\textsc{\large\itshape\mdseries of}\\
+	[0.90cm]
+	\textsc{\large\bfseries BACHELOR OF TECHNOLOGY}\\
+	[0.40cm]
+	\textsc{\large\itshape\mdseries in}\\
+	[0.40cm]
+	\textsc{\large\bfseries CYBERSECURITY}\\
+	[0.40cm]
+	\textsc{\large\bfseries APJ ABDUL KALAM TECHNOLOGICAL UNIVERSITY}\\
+	[0.40cm]
+	\textsc{\large\itshape\mdseries under the guidance}\\
+	[0.40cm]
+	\textsc{\large\itshape\mdseries of}\\
+	[0.40cm]
+	\textsc{\large\bfseries\upshape Ms. Reshmi Sojan}\\
+	[0.40cm]
+	\textsc{\large\bfseries\upshape Assistant Professor,}\\
+    \textsc{\large\bfseries\upshape Department of Cybersecurity}\\
+	[1cm]
+	\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.30\linewidth]{logo (1).png}
+    \label{fig:placeholder}
+\end{figure}
+	\textsc{\large\bfseries DEPARTMENT OF CYBERSECURITY}\\
+	[0.05cm]
+	\textsc{\large\bfseries UNIVERSITY COLLEGE OF ENGINEERING, THODUPUZHA}\\
+	[0.05cm]
+	\textsc{\large\bfseries APRIL 2026}\\
+
+	
+	\end{center}
+
+
+
+\thispagestyle{empty}
+
+\newpage
+
+	\begin{center}
+	
+	\textsc{\large\bfseries UNIVERSITY COLLEGE OF ENGINEERING, THODUPUZHA}\\
+	[0.50cm]
+	\textsc{\large\bfseries DEPARTMENT OF CYBERSECURITY}\\	
+	[1cm]
+	\includegraphics[scale=0.60]{logo (1).png}\\
+	[1cm]
+	\textsc{\large\bfseries BONAFIDE CERTIFICATE}\\
+	[1cm]
+	\justify \fontsize{12}{24} \selectfont {Certified that project work entitled \textbf{“ARJUN"S ASTHRA”} is a bonafide work done by \textbf{Mr. Adil S R} University Register No.\textbf{UCE22CYS003},  \textbf{Mr. Ashwin Binu} University Register No.\textbf{UCE22CYS011}, \textbf {Mr. Athul Krishna V S} University Register No.\textbf{UCE22CYS013}, \textbf {Mr. Kalidas R} University Register No.\textbf{UCE22CYS020} in partial fulfillment of the award of the Degree of Bachelor of Technology in Cybersecurity from APJ Abdul Kalam Technological University, Thiruvananthapuram, Kerala during the academic year 2025-2026}	
+
+\vspace{3cm}
+
+\begin{minipage}{.7\textwidth}
+	%\vspace{0.5cm}
+		\begin{flushleft} 
+		    %\textbf{Ms. Seethu Thomas}\\
+			\textbf{Project Guide}\\
+			%\textbf{Professor}\\
+			%\textbf{Dept. of CSE, UCE}\\
+		\end{flushleft}
+	\end{minipage}
+	%\vspace{0.5cm}
+	\begin{minipage}{0.7\textwidth}
+		\begin{flushright} 
+			\begin{flushleft}
+			
+			\textbf{External Supervisor }\\
+			
+			\end{flushleft}
+		\end{flushright}
+	\end{minipage}
+	
+	\begin{minipage}{0.7\textwidth}
+	%\vspace{0.5cm}
+        \vspace{1.5cm}
+		\vspace{1.5cm}
+		\begin{flushleft} 
+			%\textbf{Mrs. Mili Els Jose}\\
+			\textbf{Project Coordinator}\\
+			%\textbf{Asst.Professor}\\
+			%\textbf{Dept. of CSE, VJCET}\\
+		\end{flushleft}
+	\end{minipage}
+	%\vspace{0.5cm}
+	\begin{minipage}{0.7\textwidth}	
+		\vspace{1.5cm}
+        \vspace{1.5cm}
+		\begin{flushright} 
+			\begin{flushleft}
+			    %\textbf{Mr. Amel Austine}\\
+			    \textbf{Head of Department}\\
+				
+			\end{flushleft}
+		\end{flushright}
+	\end{minipage}
+	
+\end{center}
+
+
+	
+
+\thispagestyle{empty}
+
+\newpage
+
+	\begin{center}
+	\textsc{\large\bfseries }\\
+	[3cm]
+	\textsc{\Large\bfseries ACKNOWLEDGEMENT}\\
+	[1.5cm]
+	\justify \fontsize{12}{22} \selectfont {First and foremost, I thank \textbf {\normalsize {$ \: $God Almighty }} for her divine grace and blessings in making all these possible. May he continue to lead us in the years. It is my privilege to render my heartfelt thanks to my most beloved Principal \textbf {\normalsize {$ \: $Dr. V G Geethamma}} for providing me the opportunity to do this project during the Fourth year (2025-26) of my B.Tech degree course. I am deeply thankful to my Head of the Department,\textbf {\normalsize {$ \: $Mr. Manoj M J}} for his support and encouragement. I would like to express my sincere gratitude and heartfelt thanks to my Project Guide \textbf {\normalsize {$ \: $Ms. Reshmi Sojan}}, Assistant Professor, Department of Cybersecurity for her motivation, assistance and help for the project. I also express sincere thanks to my Project Coordinators \textbf {\normalsize {$ \: $Ms. Anju K S}}, Assistant Professor, Department of Cyber Security \& \textbf {\normalsize {$ \: $Mr. Manoj M J}}, Assistant Professor, Department of Cyber Security for their guidance and support. I also thank all the staff members of the Cybersecurity Department for providing their assistance and support. Last, but not the least, I thank all my friends and family for my valuable feedback from time to time as well as my help and encouragement.}
+	
+	
+	\end{center}
+
+
+
+\thispagestyle{empty}
+
+
+\newpage
+
+	\begin{center}
+	\textsc{\large\bfseries }\\
+	[3cm]
+	\textsc{\Large\bfseries ABSTRACT}\\
+	[1cm]
+	\justify \fontsize{12}{22} \selectfont {Secure communication in military and mission-critical environments demands not only strong encryption but also covert transmission methods that conceal the existence of sensitive information itself. This project presents ARJUNA’S ASTRA, a military-grade secure communication system that enables hidden transmission of encrypted audio messages within standard digital images using advanced steganographic and cryptographic techniques. The system combines audio transformation, hybrid encryption, and randomized image steganography to create an invisible and tamper-evident communication channel.
+
+The proposed system converts audio messages into compact spectrogram-based representations inspired by analysis and resynthesis sound spectrograph techniques. The transformed payload is secured using a hybrid cryptographic framework involving AES-256-GCM for data encryption and RSA-2048 for secure session key exchange. To further enhance confidentiality, the encrypted payload is embedded into cover images using randomized Least Significant Bit (LSB) steganography driven by a shared secret seed, making detection through conventional steganalysis significantly difficult. The system also incorporates security features such as optional secondary password protection, role-based access control, one-time audio retrieval, mission telemetry logs, and a panic-driven Burn Protocol for compromised scenarios.
+
+A web-based application is developed using Next.js and FastAPI, providing secure authentication, audio encoding and decoding workflows, image-based covert transmission, and real-time monitoring capabilities through a military-inspired command dashboard. The system is designed to maintain high visual fidelity of stego-images while ensuring reliable extraction and reconstruction of hidden messages. By integrating cryptography, steganography, and tactical security controls into a unified framework, ARJUNA’S ASTRA offers an innovative solution for covert communication in defense and high-security applications, while demonstrating the practical potential of secure invisible communication systems.}
+	
+	\end{center}
+
+\thispagestyle{empty}
+
+
+\newpage
+	\pagenumbering{gobble}
+	\textsc{\large\bfseries }\\
+	[0.5cm]
+	\tableofcontents
+	\addtocontents{toc}{\protect\thispagestyle{empty}}
+	
+    
+    
+    \thispagestyle{empty}
+
+
+
+\newpage
+
+	\textsc{\large\bfseries }\\
+	[0.5cm]
+	\listoffigures
+	\addcontentsline{toc}{chapter}{LIST OF FIGURES}
+	\pagenumbering{roman}
+
+
+
+
+
+\clearpage
+
+
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{OG Xpose }
+
+\rfoot{Page \thepage}
+\lfoot{\footnotesize{Dept. of Cybersecurity, UCE}}
+\newpage
+\pagenumbering{roman}
+\renewcommand{\baselinestretch}{1.50}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{1pt}
+%\renewcommand{\headheight}{25pt}
+%\renewcommand{\footskip}{2pt}
+
+\newpage
+
+\pagenumbering{roman}
+\setcounter{page}{2}
+
+
+\renewcommand{\bibname}{References}
+
+\chapter{	INTRODUCTION}
+\thispagestyle{fancy}
+\pagenumbering{arabic}
+
+\section{ About the Project}
+
+\large\justify ARJUNA’S ASTRA is a secure covert communication system designed to transmit sensitive audio messages by hiding encrypted information inside digital images using cryptography and steganography. The project aims to overcome the limitations of conventional secure communication systems, where encrypted messages may reveal the existence of secret communication. The proposed system converts audio messages into spectrogram-based data, secures them using hybrid encryption with AES-256 and RSA-2048, and embeds the encrypted payload into images using randomized Least Significant Bit (LSB) steganography. The system also includes security features such as role-based access control, one-time retrieval, telemetry logging, and Burn Protocol for enhanced operational security. Developed as a web-based application using Next.js and FastAPI, ARJUNA’S ASTRA provides an efficient framework for invisible and secure communication in defense and mission-critical environments.
+
+\section{ Objective and Scope of Project}
+
+\large\justify The primary objective of ARJUNA’S ASTRA is to develop a secure communication platform capable of hiding sensitive audio information within digital images while ensuring confidentiality, integrity and covert transmission. The project aims to combine advanced cryptographic algorithms and steganographic methods to provide invisible communication that is resistant to interception and unauthorized access. 
+
+The scope of the project includes the development and implementation of audio transformation techniques, hybrid encryption methods, randomized image embedding algorithms, and secure decoding modules integrated into a web-based platform. The project focuses on defense-oriented and mission-critical communication scenarios, while also demonstrating possible applications in intelligence systems, secure emergency communication and high-security information exchange.
+
+
+\section{ Definition of Problem}
+
+\large\justify Traditional secure communication systems rely mainly on encryption to protect sensitive information. Although encryption secures the content of messages, it does not conceal the existence of communication itself, making encrypted traffic vulnerable to surveillance, interception and traffic analysis. In military and mission-critical environments, even revealing the presence of secret communication can compromise operations.
+
+Conventional steganographic systems also face challenges such as predictable embedding patterns, vulnerability to steganalysis and lack of integrated security controls. Existing systems often fail to provide a unified framework combining covert communication, strong encryption and operational safeguards. This project addresses these limitations by proposing a secure system that hides encrypted audio messages within ordinary images while providing multiple layers of protection against detection and compromise.
+
+
+
+\section{ Significance of the Project}
+
+\large\justify The significance of ARJUNA’S ASTRA lies in providing a secure and covert communication framework by combining cryptography and steganography within a single system. Unlike conventional communication methods that only protect message content, the proposed system also conceals the existence of communication, making it suitable for defense and mission-critical applications where operational secrecy is essential. By integrating hybrid encryption, randomized LSB embedding, role-based access control, one-time retrieval, telemetry logging and Burn Protocol, the system enhances confidentiality, resistance against detection and operational security. The project also demonstrates the practical integration of cybersecurity, signal processing and secure system design, while offering potential applications in defense, intelligence and other high-security communication environments.
+
+
+
+
+
+\chapter{	LITERATURE REVIEW}
+\thispagestyle{fancy}
+
+\section{ Introduction to Arjuna's Asthra }
+
+\large\justify ARJUNA’S ASTRA is an advanced covert communication system designed to provide secure transmission of sensitive audio messages by concealing encrypted data within digital images. The system combines cryptography, steganography and audio signal processing to create an invisible communication channel that protects both the content and existence of communication. It employs spectrogram-based audio encoding, hybrid encryption using AES and RSA, and randomized Least Significant Bit embedding to ensure confidentiality and resistance against detection. In addition to covert message transmission, the system incorporates security features such as role-based access control, one-time retrieval, telemetry logging and Burn Protocol to strengthen operational security. The project is developed as a web-based platform for defense and mission-critical environments, providing a practical framework for secure and hidden communication.
+
+
+\section{ Traditional Image Forgery Detection Techniques }
+
+\large\justify Traditional image forgery detection techniques are among the earliest methods developed to identify manipulated or altered images. These approaches primarily rely on analyzing low-level features such as pixel values, noise patterns, color distribution, and compression artifacts to detect inconsistencies within an image. Techniques like pixel-based analysis examine irregularities in noise, texture, and color that may arise when different image regions are edited or combined. Similarly, compression and artifact analysis focuses on identifying anomalies in formats such as JPEG, where inconsistent compression patterns can indicate tampering. While these methods were effective for detecting basic image manipulations, they are limited when applied to modern AI-generated images. Advanced generative models are capable of producing highly consistent and realistic outputs, making it difficult for traditional techniques to identify any visible or statistical discrepancies. As a result, these methods are considered less reliable in current scenarios and have largely been replaced by more advanced deep learning-based approaches.
+
+\subsection{ Pixel-Based Analysis }
+
+\large\justify Early image forgery detection techniques relied heavily on pixel-level analysis to identify inconsistencies within an image. These methods examine noise patterns, color distribution, and texture variations to detect signs of manipulation. For instance, noise inconsistencies arise when different parts of an image have been altered or combined from multiple sources, resulting in uneven noise levels. Similarly, irregularities in color and texture can indicate tampering, as edited regions may not perfectly match the natural characteristics of the original image. While these techniques were effective for detecting simple edits, they are less reliable when dealing with highly sophisticated synthetic images generated by modern AI models.
+
+\subsection{ Compression and Artifact Analysis}
+\large\justify Another traditional approach involves analyzing compression artifacts and statistical properties of images. JPEG compression, which is commonly used in digital images, introduces specific patterns and distortions that can be studied to identify manipulation. For example, inconsistencies in JPEG artifacts across different regions of an image may suggest that parts of the image were altered or recompressed separately. In addition, statistical irregularities in pixel distributions, frequency components, or image metadata can provide clues about image authenticity. These methods rely on detecting deviations from expected patterns in naturally captured images, making them useful for basic forgery detection.
+
+\subsection{Limitations of Traditional Methods}
+\large\justify Despite their initial effectiveness, traditional image forgery detection techniques have significant limitations in the context of modern AI-generated images. Advanced generative models are capable of producing highly realistic images that maintain consistent noise patterns, textures, and compression characteristics, making it difficult for these methods to detect any anomalies. Furthermore, these techniques often lack scalability and robustness when applied to large and diverse datasets. As a result, they struggle to generalize across different types of manipulations and fail to keep up with the rapid advancements in AI-based image generation technologies.
+
+
+
+\section{Deep Learning Approaches (CNN-Based Methods)}
+
+
+
+\subsection{Overview of CNNs}
+
+\large\justify Convolutional Neural Networks (CNNs) are a fundamental class of deep learning models designed specifically for image processing and computer vision tasks. They operate by applying convolutional filters across input images to detect patterns such as edges, textures, and shapes. These filters move spatially across the image, enabling the network to learn spatial hierarchies of features. A typical CNN architecture consists of convolutional layers for feature extraction, pooling layers for reducing dimensionality, and fully connected layers for final classification. This layered structure allows CNNs to progressively transform raw pixel data into meaningful representations.
+
+\large\justify Feature extraction in CNNs is performed automatically through hierarchical learning. In the initial layers, the network captures low-level features such as edges and corners. As the depth increases, intermediate layers identify textures and repetitive patterns, while deeper layers recognize high-level semantic structures such as objects and shapes. This ability to learn features directly from data eliminates the need for manual feature engineering, making CNNs highly effective for image classification tasks.
+
+
+\subsection{CNNs for Deepfake and GAN Detection}
+\large\justify CNNs have been extensively applied in detecting AI-generated images and deepfakes due to their strong capability in image classification. These models are trained on datasets containing both real and synthetic images, enabling them to learn distinguishing features between authentic and manipulated content. In the context of GAN-generated image detection, CNNs analyze inconsistencies such as unnatural textures, irregular lighting patterns, and pixel-level artifacts that often arise during image synthesis.
+
+\large\justify Compared to traditional handcrafted methods, CNN-based approaches provide significant improvements in performance. They achieve higher accuracy by automatically learning discriminative features and adapting to complex data distributions. As highlighted in the study, CNN models demonstrated substantial advancements over earlier statistical techniques in detecting fake images, making them a dominant approach in digital image forensics .
+
+
+
+\subsection{Limitations of CNNs}
+\large\justify Despite their effectiveness, CNNs have inherent limitations when applied to advanced AI-generated image detection. One of the major challenges is their limited ability to capture global context within an image. Since CNNs rely on local receptive fields, they primarily focus on nearby pixel relationships and struggle to understand long-range dependencies across different regions of an image.
+
+\large\justify Additionally, CNNs face difficulties in detecting subtle manipulations introduced by modern generative models. As GANs become more sophisticated and produce highly realistic images, the differences between real and synthetic images become increasingly fine-grained. CNNs often fail to capture these subtle inconsistencies, leading to reduced performance in complex scenarios. The paper emphasizes that the effectiveness of CNNs decreases as generative models evolve, highlighting the need for more advanced architectures .
+
+
+
+\section{Transformer-Based Models in Computer Vision}
+\large\justify Transformers were originally developed in the field of Natural Language Processing (NLP), where they revolutionized sequence modeling by treating text as a sequence of tokens. Their success in capturing contextual relationships inspired their adoption in computer vision tasks. Unlike traditional models, transformers do not rely on sequential processing but instead utilize a mechanism that allows parallel computation and global information exchange.
+
+\large\justify The core component of transformers is the self-attention mechanism, which enables the model to assign importance to different parts of the input data. Through self-attention, the model can learn relationships between distant elements within the input, making it highly effective in capturing global dependencies. This characteristic is particularly valuable in tasks where understanding the overall structure and context is crucial.
+
+\subsection{Adaptation to Vision Tasks}
+\large\justify In computer vision, transformers are adapted by representing images as sequences of smaller patches. Each image is divided into fixed-size patches, and each patch is treated as a token similar to words in a sentence. These tokens are then processed by the transformer model, allowing it to analyze the entire image in a holistic manner.
+
+\large\justify This approach enables global feature learning, which is a significant advantage over CNNs. Instead of focusing only on local regions, transformer-based models consider relationships between all parts of the image simultaneously. As a result, they are better equipped to capture complex patterns and subtle variations, making them highly suitable for challenging tasks such as AI-generated image detection.
+
+\section{Vision Transformers (ViTs) for Image Detection}
+\subsection{Architecture of ViT}
+\large\justify The Vision Transformer (ViT) introduces a novel architecture for image classification by treating images as sequences of patches. Initially, the input image is divided into non-overlapping patches, which are then flattened and transformed into vector representations through a process known as patch embedding. To retain spatial information, positional encoding is added to these embeddings, ensuring that the model understands the relative positions of patches within the image.
+
+\large\justify These embedded patches are then passed through a transformer encoder composed of multiple layers of multi-head self-attention and feed-forward networks. This structure allows the model to capture complex relationships and long-range dependencies across different regions of the image. Finally, a classification token is used to represent the entire image, and its output is fed into a fully connected layer to produce the final prediction. The architecture illustrated in the paper demonstrates how this pipeline effectively processes image data for classification tasks.
+
+\subsection {Advantages of ViTs}
+
+\large\justify Vision Transformers offer several advantages over traditional CNN-based models, particularly in capturing long-range dependencies within images. By leveraging self-attention, ViTs can analyze relationships between distant regions, which is essential for identifying subtle inconsistencies in AI-generated images.
+
+\large\justify Furthermore, ViTs have demonstrated superior performance in complex image classification tasks. The study reports that the ViT model achieves high accuracy, reaching approximately 98.2\%, and consistently outperforms CNN-based approaches. This improved performance highlights the effectiveness of transformer-based architectures in handling intricate visual patterns and detecting synthetic content.
+
+\subsection {Applications in AI-Generated Image Detection}
+
+\large\justify Recent research has shown that Vision Transformers are highly effective in detecting AI-generated images. By leveraging their ability to learn global features and complex patterns, ViTs can distinguish between real and synthetic images with high precision. The use of pretrained weights and data augmentation further enhances their performance and generalization capabilities.
+
+\large\justify When compared to CNN models, ViTs demonstrate clear advantages in terms of accuracy and recall. They are particularly effective in minimizing false negatives, which is critical in applications such as deepfake detection. The findings from the study confirm that ViTs provide a robust framework for image forensics and represent a promising direction for future research.
+
+\section{Comparative Analysis of Existing Methods}
+
+\large\justify A comparative analysis of traditional methods, CNN-based approaches, and Vision Transformers reveals a clear progression in performance and capability. Traditional methods rely on handcrafted features and statistical analysis, which often lack robustness and fail to generalize across diverse datasets. CNNs improve upon this by automatically learning hierarchical features, but their focus on local regions limits their ability to capture global context.
+
+\large\justify Vision Transformers, on the other hand, introduce a paradigm shift by leveraging self-attention mechanisms to model global relationships within images. As reported in the study, ViTs achieve higher accuracy compared to CNN-based models, reaching approximately 98.2\%, while CNNs typically range between 91\% and 96\% . However, this improved performance comes at the cost of increased computational complexity, as ViTs require more resources and longer training times.
+
+\large\justify Each approach has its strengths and weaknesses. Traditional methods are computationally efficient but lack accuracy, CNNs offer a balance between efficiency and performance, while ViTs provide superior accuracy and global understanding at the expense of higher computational requirements. The choice of method depends on the specific application and available resources.
+
+\section{Research Gaps}
+
+\large\justify Despite significant advancements in AI-generated image detection, several research gaps remain. One major limitation is the inability of existing models, particularly CNNs, to effectively detect highly sophisticated GAN-generated images. As generative models continue to improve, detection methods must evolve to keep pace with increasingly realistic synthetic content.
+
+\large\justify Another critical challenge is the high computational cost associated with Vision Transformers. These models require substantial computational resources, making them difficult to deploy in real-world scenarios with limited hardware capabilities. This constraint highlights the need for more efficient and lightweight architectures.
+
+\large\justify Additionally, current detection systems are not well-suited for real-time applications. The complexity and processing requirements of advanced models hinder their ability to perform instant detection, which is essential in many practical use cases. Furthermore, models often struggle with generalization across different datasets, performing well on trained data but failing to adapt to unseen data distributions.
+
+\large\justify Addressing these gaps requires future research to focus on improving model efficiency, enhancing generalization capabilities, and developing real-time detection systems. Such advancements will be crucial for ensuring the reliability and scalability of AI-generated image detection technologies.
+
+
+
+
+
+
+
+\newpage
+
+\chapter{ SYSTEM ANALYSIS }
+\thispagestyle{fancy}
+
+\large\justify The system analysis of the proposed project focuses on studying the problem of detecting AI-generated images. With the advancement of artificial intelligence, many models can create highly realistic images that are difficult to distinguish from real images. This creates challenges in verifying the authenticity of digital media. Therefore, the system analyzes existing detection methods and their limitations. Based on this analysis, a Vision Transformer–based approach is used to improve the detection of AI-generated images. The system helps in accurately classifying images as real or AI-generated
+
+
+\section{Existing System Disadvantages}
+\large\justify Existing systems used for detecting AI-generated images mainly rely on traditional image analysis techniques and Convolutional Neural Network (CNN) based models. Early detection methods focused on identifying inconsistencies in pixel values, lighting patterns, or compression artifacts present in manipulated images. However, with the rapid advancement of artificial intelligence and generative models such as Generative Adversarial Networks (GANs), these traditional methods have become less effective. Modern AI models are capable of generating highly realistic images that closely resemble real photographs, making it extremely difficult for traditional techniques to distinguish between real and synthetic content. CNN-based models improved detection performance compared to earlier approaches, but they still have certain limitations. CNNs mainly focus on local features of images and may fail to capture global relationships between different regions of the image. As a result, subtle differences between real and AI-generated images may not be properly detected. Another disadvantage of existing systems is the higher probability of false predictions, where real images may be incorrectly classified as fake or AI-generated images may remain undetected. In addition, many existing systems struggle to handle large and diverse datasets efficiently, which limits their scalability and reliability in real-world applications.
+
+\section{Proposed System Advantages}
+\large\justify The proposed system addresses the limitations of existing methods by using a Vision Transformer (ViT) based architecture for detecting AI-generated images. Vision Transformers introduce a new approach to image analysis by dividing images into smaller patches and processing them using a transformer architecture with self-attention mechanisms. This allows the model to capture both local and global relationships within the image more effectively. One of the main advantages of the proposed system is its ability to detect subtle patterns and complex structures that differentiate real images from AI-generated images. The self-attention mechanism enables the model to analyze the relationships between different regions of an image, improving the accuracy of detection. Another advantage is improved generalization capability due to the use of data augmentation techniques such as image rotation, cropping, and flipping during training. The system also benefits from pretrained weights obtained from large-scale datasets, which helps the model learn meaningful visual features more efficiently. As a result, the proposed system achieves higher detection accuracy and performs better than traditional CNN-based models. Additionally, the system is scalable and capable of handling large datasets, making it suitable for real-world applications such as digital media verification and cybersecurity.
+
+\section{System Architecture}
+\large\justify The system architecture comprises several key components, including:
+\large\justify 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{architecture.jpeg}
+    \caption{System Architecture}
+    \label{fig:placeholder}
+\end{figure}
+\large\justify The architecture is designed to be scalable and adaptable, accommodating future enhancements and updates to meet evolving user needs and technological advancements.
+
+\section{Methodology}
+\large\justify The methodology used in this project involves several important steps. The first step is collecting a dataset containing both real images and AI-generated images. These images are used to train and evaluate the model. After collecting the dataset, preprocessing techniques such as resizing, normalization, and data augmentation are applied to improve the quality and diversity of the training data.
+\large\justify Next, the images are divided into fixed-size patches and converted into embeddings. These embeddings are then passed into the Vision Transformer model, where self-attention mechanisms analyze the relationships between different image regions. The model is trained using labeled data to learn the distinguishing features of real and AI-generated images.
+\large\justify During training, performance metrics such as accuracy, precision, recall, and F1-score are used to evaluate the model. Once the training process is completed, the model is tested using unseen images to verify its ability to correctly classify images. The final system can then be used to detect whether an input image is authentic or artificially generated.
+
+
+\section{Module Description}
+\large\justify The proposed system is divided into several modules that work together to perform the detection process:
+\large\justify 
+\begin{itemize}
+\item The Data Collection Module is responsible for gathering datasets containing both authentic and AI-generated images. These datasets are used for training and evaluating the model.
+\item The Preprocessing Module prepares the collected images by resizing them into a standard format and normalizing pixel values. Data augmentation techniques may also be applied to increase the diversity of the dataset.
+\item The Feature Extraction Module divides the images into patches and converts them into embeddings that can be processed by the Vision Transformer model.
+\item The Model Training Module trains the Vision Transformer using the prepared dataset. During this process, the model learns important patterns that differentiate real images from synthetic ones.
+\item The Classification Module analyzes input images using the trained model and determines whether the image is real or AI-generated.
+\item The Result Output Module displays the final detection result to the user in an understandable format.
+\end{itemize}
+
+\section{ Feasibility Study }
+\large\justify The feasibility study of the proposed system encompasses various aspects, including:
+\large\justify
+\begin{itemize}
+\item Technical Feasibility: The proposed system is technically feasible because it uses well-established deep learning frameworks such as Python, TensorFlow, or PyTorch. These technologies provide powerful tools for implementing Vision Transformer models and handling large image datasets. The availability of cloud platforms such as Google Colab also makes it easier to train deep learning models using GPU resources.
+\item Economic Feasibility: The system is economically feasible because it mainly uses open-source software and publicly available datasets. This significantly reduces the cost of development. Most of the tools required for implementation are freely available, which makes the project cost-effective.
+\item Operational Feasibility: The system is designed to be easy to operate. Users only need to upload an image to the system, and the model will analyze the image and provide the result indicating whether it is real or AI-generated. The system interface can be designed in a user-friendly way so that even non-technical users can use it.
+\item Social Impact: The proposed system has significant social benefits. AI-generated images can be misused to spread misinformation, create fake media content, or manipulate public opinion. By detecting such images, the system can help maintain trust in digital media and support efforts to combat misinformation and digital fraud.
+\end{itemize}
+
+
+\newpage
+
+\chapter{ SYSTEM REQUIREMENTS AND SPECIFICATIONS }
+\thispagestyle{fancy}
+
+\section{Hardware Configurations}
+
+\large\justify 
+\begin{itemize}
+\item Processor: Intel Core i5 or higher
+\item RAM: 8 GB or above
+\item Hard Disk: 256 GB or above
+\item GPU (optional for training): NVIDIA GPU
+\item Input Devices: Keyboard and Mouse
+\end{itemize}
+
+\section{Software Requirements}
+
+
+\large\justify 
+\begin{itemize}
+\item Operating System: Windows / Linux
+\item Programming Language: Python
+\item Deep Learning Libraries: TensorFlow or PyTorch Development
+\item Environment: Jupyter Notebook / Google Colab
+\end{itemize}
+
+\section{Technology Used}
+
+\large\justify The proposed system uses modern machine learning and deep learning technologies. Python is used as the main programming language for implementing the system. Vision Transformer architecture is used for image analysis and classification. Deep learning frameworks such as TensorFlow or PyTorch are used to build and train the model. These technologies help in improving the accuracy and efficiency of detecting AI-generated images.
+
+
+\newpage
+
+\chapter{ SYSTEM DESIGN }
+\thispagestyle{fancy}
+
+\section{ Table Design }
+\large\justify The table design in OG Xplore outlines the structure and relationships of the database tables used to store user data, images, and other relevant information. The following tables are included in the database schema:
+\large\justify 
+\begin{itemize}
+\item User\_Details: Stores user information such as username, email, password hash, first name and last name.
+\begin{figure}[!h]
+\begin{center}
+  \includegraphics[scale=0.7]{user_details.png}
+  \caption{User\_details Table}
+  \end{center}
+\end{figure}
+\item User\_Query: Stores user submitted file details with file path, date, time, and query results for tracking and reference.
+\begin{figure}[!h]
+\begin{center}
+  \includegraphics[scale=.7]{user_query.png}
+  \caption{User\_query Table}
+  \end{center}
+\end{figure}
+\item User\_Login: Stores user account details such as username, password, and user type for authentication and access control
+\newpage
+\begin{figure}[!h]
+\begin{center}
+  \includegraphics[scale=.7]{user_login.png}
+  \caption{User\_login Table}
+  \end{center}
+\end{figure}
+\item Pic\_Pool: Stores image records with a unique ID and the file path of pictures for retrieval and management.
+\begin{figure}[!h]
+\begin{center}
+  \includegraphics[scale=.7]{pic_pools.png}
+  \caption{Pic\_pool Table}
+  \end{center}
+\end{figure}
+\item Feedbacks : Stores user feedback messages along with the date and time of submission for record and review purposes.
+\begin{figure}[!h]
+\begin{center}
+  \includegraphics[scale=.7]{feedbacks.png}
+  \caption{Feedbacks Table}
+  \end{center}
+\end{figure}
+
+\section{ Use Case Diagram }
+\large\justify The Use Case Diagram represents the interaction between users and the OG Xplore. It mainly consists of two actors: the User and the Admin, each having different functionalities. The User can upload images, view detection results, and access their previous activity history. These features allow users to easily interact with the system and understand whether an image is AI-generated or original. On the other hand, the Admin is responsible for monitoring the system, managing users, and reviewing feedback submitted by users. This ensures that the system operates efficiently and maintains reliability. The diagram clearly shows how different roles interact with the system and highlights the functional requirements. Overall, it provides a high-level overview of system behavior and user interactions.
+\begin{figure}[!h]
+\begin{center}
+  \includegraphics[scale=.63]{ai projjjj.drawio.png}
+  \caption{Use Case Diagram}
+  \end{center}
+\end{figure}
+\section{ ER Diagram }
+\large\justify The AI Diagram illustrates the database structure of the OG Xplore and the relationships between different entities. The main entities include User, Image, Prediction, Activity Log, and Feedback. Each user can upload multiple images, establishing a one-to-many relationship between User and Image. Similarly, each image can have multiple predictions, representing the analysis results generated by the AI model. The Activity Log keeps track of user actions such as uploads and result views, ensuring traceability and system monitoring. The Feedback entity allows users to submit their opinions or issues, which helps improve the system. Relationships between entities are clearly defined using primary and foreign keys to maintain data integrity. Overall, this diagram provides a structured view of how data is stored, managed, and interconnected within the system.
+\begin{figure}[!h]
+\begin{center}
+  \includegraphics[scale=.50]{ER.drawio.png}
+  \caption{ER Diagram}
+  \end{center}
+\end{figure}
+\newpage
+
+\chapter{SYSTEM IMPLEMENTATION}
+\thispagestyle{fancy}
+
+\section{Vision Transformer Architecture}
+\subsection{Dataset Selection and Preprocessing}
+\large\justify The first step in implementing the Vision Transformer (ViT) architecture involved selecting and preparing an appropriate dataset for training and evaluation. The dataset used in this project was sourced from the Kaggle Digital Image Forensics repository, consisting of a balanced collection of real and AI-generated images. The dataset included a total of 30,000 images, with 15,000 real images collected from various online sources and 15,000 AI-generated images created using Generative Adversarial Networks (GANs). Each image was labeled as either “real” or “fake,” making it suitable for binary classification.
+\large\justify To enhance model performance and ensure compatibility with the Vision Transformer, several preprocessing steps were applied. All images were resized to a fixed dimension of 224 × 224 pixels, which is the standard input size required by the ViT model. Pixel values were normalized to the range [0,1] to improve training stability and convergence.
+\large\justify In addition, data augmentation techniques were employed to increase the diversity of the training data and improve the model’s generalization capability. These techniques included random cropping, horizontal flipping, rotation, and color jittering. Furthermore, the images were divided into smaller non-overlapping patches of size 16 × 16 pixels, and each patch was flattened into a vector representation. Positional encoding was then added to these patch embeddings to preserve spatial relationships within the image.
+\subsection{Dataset Structure}
+\large\justify The dataset used for training the Vision Transformer model was organized into two main categories: real images and AI-generated images. Each category contained an equal number of samples to ensure a balanced dataset, which helps prevent bias during model training.
+\large\justify The dataset was structured in a way that facilitates efficient training and evaluation. It was divided into training and validation sets, typically in an 80:20 ratio. The training set was used to train the model, while the validation set was used to evaluate its performance and tune hyperparameters. Each image in the dataset was associated with a corresponding label indicating whether it was real or fake.
+\large\justify This structured approach enabled the model to learn distinguishing features between authentic and AI-generated images effectively, while also providing a reliable framework for performance evaluation.
+\subsection{Model Training and Evaluation}
+\large\justify Once the dataset was prepared, the Vision Transformer model was trained using the preprocessed image data. The model operates by analyzing sequences of image patches and learning complex patterns that distinguish real images from AI-generated ones.
+ \large\justify The training process involved initializing the model with pretrained weights to leverage previously learned visual features, which significantly improved performance and reduced training time. The model was trained using the Adam optimizer with a learning rate of 1e-4. A binary cross-entropy loss function was used, as the task involves binary classification between real and fake images.
+\large\justify The training was conducted with a batch size of 32 over 50 epochs. Early stopping was implemented to prevent overfitting by monitoring the validation loss. During training, the model continuously adjusted its internal parameters to improve prediction accuracy.
+\large\justify For evaluation, several performance metrics were used, including accuracy, precision, recall, F1-score, and ROC-AUC. A confusion matrix was also generated to analyze the model’s classification performance in detail, including true positives, false positives, true negatives, and false negatives.
+\subsection{Technical Side}
+\large\justify From a technical perspective, the Vision Transformer model processes images differently from traditional convolutional neural networks. Instead of analyzing the entire image at once, the image is divided into smaller patches, which are treated as a sequence of tokens.
+\large\justify Each patch is embedded into a vector and combined with positional encodings to retain spatial information. These embeddings are then passed through a transformer encoder consisting of multiple layers of multi-head self-attention mechanisms and feed-forward neural networks. In this implementation, the encoder contains 12 layers with 8 attention heads, allowing the model to capture both local and global dependencies within the image.
+\large\justify A special classification token ([CLS]) is added to the sequence of patch embeddings. After processing through the transformer layers, the output corresponding to this token is used as a representation of the entire image. Dropout regularization (ranging from 0.1 to 0.2) is applied to reduce overfitting and improve generalization.
+\subsection{Integration of Vision Transformer Model}
+\large\justify The trained Vision Transformer model was integrated into the overall system to enable real-time detection of AI-generated images. The integration involved developing interfaces that allow input images to be processed through the trained model and generate predictions.
+\large\justify When a user provides an image, it is first preprocessed using the same steps applied during training. The processed image is then passed through the Vision Transformer model, which outputs a probability score indicating whether the image is real or AI-generated. Based on this output, the system classifies the image accordingly.
+\large\justify This integration ensures a seamless workflow from image input to prediction output, making the system suitable for practical applications such as digital image verification and deepfake detection.
+
+
+\section{Grad-CAM Based Explainability Module}
+\subsection{Introduction to Grad-CAM}
+\large\justify To enhance the interpretability of the Vision Transformer model, Gradient-weighted Class Activation Mapping (Grad-CAM) was incorporated into the system. Grad-CAM is a visualization technique used to highlight the important regions of an image that influence the model’s prediction for a specific class.
+\large\justify In this project, Grad-CAM is used to provide insights into how the model differentiates between real and AI-generated images. Instead of treating the model as a black box, this technique allows users to understand which parts of the image contributed most to the final decision.
+
+\subsection{Working Principle of Grad-CAM}
+\large\justify Grad-CAM works by utilizing the gradients of the target class flowing into the final layers of the model. These gradients are used to compute importance weights for different feature maps, which are then combined to produce a localization map.
+\large\justify The process involves the following steps:
+\item [1.] Forward Pass:
+The input image is passed through the trained model to obtain class scores.
+\item [2.] Feature Map Extraction:
+Activations are extracted from the final feature layer of the model.
+\item [3.] Gradient Computation:
+Gradients of the target class score are computed with respect to the extracted feature maps.
+\item [4.] Global Average Pooling:
+The gradients are averaged to obtain importance weights for each feature map.
+\item  [5.] Feature Map Combination:
+The feature maps are combined using the computed weights to generate a coarse localization map.
+\item [6.] ReLU Activation:
+A Rectified Linear Unit (ReLU) is applied to retain only the features that positively influence the prediction.
+\end{itemize}
+
+\subsection{Integration with Vision Transformer}
+\large\justify Although Grad-CAM is traditionally used with Convolutional Neural Networks, it was adapted in this project to work with the Vision Transformer architecture. The attention-based features of the transformer were utilized to approximate spatial importance.
+\large\justify The Grad-CAM module was integrated after the model prediction stage. Once the Vision Transformer classifies an image as real or fake, Grad-CAM generates an explanation map indicating the regions responsible for that classification..
+\subsection{Advantages of Using Grad-CAM}
+\large\justify The inclusion of Grad-CAM provides several benefits:
+\large\justify The process involves the following steps:
+\item [1.] Improves model transparency and interpretability
+\item [2.] Helps in understanding model behavior
+\item [3.] Assists in debugging incorrect predictions
+\item [4.] Enhances user trust in the system
+
+
+\section{Heatmap Visualization Module}
+\subsection{Introduction to Heatmap Visualization}
+\large\justify To provide a clear and intuitive understanding of the model’s decision-making process, a heatmap visualization module was incorporated into the system. The heatmap is generated based on the output of the Grad-CAM module and highlights the regions of the image that most strongly influenced the model’s prediction.
+\large\justify This visualization helps users easily interpret whether the model is focusing on meaningful parts of the image while classifying it as real or AI-generated
+
+\subsection{Heatmap Generation Process}
+\large\justify The heatmap is created by transforming the output of the Grad-CAM module into a visual representation. The process involves the following steps:
+\item [1.] Normalization:
+The Grad-CAM output is normalized to a suitable range to ensure proper visualization.
+\item [2.] Resizing:
+The generated activation map is resized to match the original input image dimensions (224 × 224 pixels).
+\item [3.] Color Mapping:
+A color scheme (such as red, yellow, and blue) is applied to represent the intensity of important regions. Warmer colors (red/yellow) indicate higher importance, while cooler colors (blue) indicate lower importance.
+\item [4.] Overlaying:
+The heatmap is superimposed onto the original image, allowing users to visually correlate the highlighted regions with the actual image content.
+\subsection{System Integration}
+\large\justify The heatmap visualization module is integrated as the final stage of the system pipeline. After the Vision Transformer predicts whether an image is real or fake and the Grad-CAM module generates the importance map, the heatmap is produced and displayed to the user.
+\large\justify This ensures a complete workflow:
+\large\justify   Input image
+\large\justify   Model prediction (ViT)
+\large\justify   Explanation (Grad-CAM)
+\large\justify   Visualization (Heatmap)
+\large\justify The output is presented in a user-friendly manner, making it suitable for applications such as digital image verification and deepfake detection.
+\subsection{Benefits of Heatmap Visualization}
+\large\justify The use of heatmaps provides several advantages:
+\large\justify Makes model decisions visually understandable
+\large\justify Helps identify whether the model is focusing on relevant features
+\large\justify Improves transparency and trust in AI systems
+\large\justify Assists in analyzing incorrect or unexpected predictions
+
+\chapter{ TESTING }
+\thispagestyle{fancy}
+\large\justify Testing is a crucial phase in the development lifecycle of any machine learning-based application, ensuring that the system performs accurately, reliably, and efficiently under different conditions. In the case of the Vision Transformer-based AI image detection system, rigorous testing procedures were implemented to validate the model’s classification performance, interpretability, and overall system functionality. This chapter presents the testing methodologies adopted during the development process, including alpha testing, beta testing, and evaluation of system performance in a real-world-like environment.
+\section{Hosting Environment}
+\large\justify The developed system was tested in a cloud-based environment to ensure accessibility and scalability. The model and associated modules were deployed using cloud platforms such as Google Colab and local GPU-enabled systems for efficient computation. These environments provided the necessary computational power for running the Vision Transformer model and Grad-CAM visualization without performance bottlenecks. The hosting setup ensured smooth execution of the system pipeline, including image preprocessing, prediction, and heatmap generation.
+\section{Alpha Testing}
+\large\justify The alpha testing phase was conducted internally by the development team to evaluate the core functionality of the system. This phase focused on verifying the correctness of each module, including dataset preprocessing, model prediction, Grad-CAM generation, and heatmap visualization. Various test images, including both real and AI-generated samples, were used to validate the system’s classification capability.
+\large\justify During alpha testing, the following aspects were examined:
+\item [1.] Accuracy of image classification (real vs fake)
+\item [2.] Correct implementation of preprocessing steps
+\item [3.] Proper generation of Grad-CAM explanation maps
+\item [4.] Alignment of heatmaps with important image regions
+
+\large\justify Bugs and inconsistencies identified during this phase were corrected, ensuring that the system performed as expected before proceeding to external testing.
+\section{Beta Testing}
+\large\justify After successful alpha testing, the system underwent beta testing with a group of external users, including peers and project stakeholders. This phase aimed to evaluate the usability, reliability, and real-time performance of the system. Users were provided with access to the system and asked to test it using different types of images.
+\large\justify Feedback collected during beta testing focused on:
+\item [1.] Ease of use and user interface interaction
+\item [2.] Accuracy and consistency of predictions
+\item [3.] Clarity and usefulness of Grad-CAM heatmaps
+\item [4.] System response time and performance
+
+\large\justify The feedback obtained helped in refining the system, improving visualization clarity, and optimizing performance for better user experience.
+\section{Current Testing Status}
+\large\justify Currently, the system is in an advanced testing stage, with multiple users actively evaluating its performance using diverse datasets. The model has demonstrated strong classification capability with high accuracy and reliable prediction outcomes. The Grad-CAM module consistently provides meaningful visual explanations, and the heatmap visualization effectively highlights critical regions influencing the model’s decisions.
+
+\large\justify Continuous testing is being carried out to further improve robustness, especially in challenging scenarios such as low-quality images and highly realistic AI-generated content.
+\section{Cost-Free Testing}
+\large\justify A significant advantage of this project is the use of cost-effective and freely available resources for testing and development. The system was implemented using open-source libraries such as TensorFlow/PyTorch, along with free computational platforms like Google Colab.
+
+\large\justify This approach ensured that:
+\item [1.] Development and testing were conducted without financial constraints
+\item [2.] High-performance computing resources were still accessible
+\item [3.] The system remains easily reproducible for future research
+
+\newpage
+\pagenumbering{roman}
+\setcounter{page}{2}
+\chapter*{FUTURE SCOPE}
+\addcontentsline{toc}{chapter}{FUTURE SCOPE}
+\large\justify The proposed system for detecting AI-generated images using Vision Transformers can be further improved and extended in several ways. In the future, the system can be trained using larger and more diverse datasets that include images generated from different AI models such as GANs and diffusion models. This will help the model learn more complex patterns and improve its ability to detect newly generated synthetic images. The accuracy and efficiency of the system can also be enhanced by combining Vision Transformers with other deep learning techniques such as Convolutional Neural Networks or hybrid models.
+Another possible improvement is the development of real-time detection systems that can analyze images instantly. This can be useful for applications such as social media platforms, news verification systems, and online content moderation tools. The system can also be expanded to detect other forms of AI-generated media such as deepfake videos and synthetic audio. In addition, user-friendly interfaces and web-based applications can be developed so that the system can be easily used by the general public, journalists, and organizations. These improvements will help make the system more effective in combating misinformation and maintaining the authenticity of digital media.
+\large\justify 
+\begin{itemize}
+
+\end{itemize}
+\large\justify 
+
+\newpage
+\chapter*{CONCLUSION}
+\addcontentsline{toc}{chapter}{CONCLUSION}
+
+\large\justify The rapid development of artificial intelligence technologies has made it possible to generate highly realistic images that are difficult to distinguish from real photographs. While these technologies offer many benefits in areas such as entertainment, design, and media creation, they also create serious challenges related to misinformation, digital manipulation, and security. Therefore, it has become increasingly important to develop reliable systems that can detect AI-generated images.
+In this project, a system for detecting AI-generated images using Vision Transformer technology was proposed and studied. The system analyzes images by dividing them into patches and learning the relationships between different parts of the image using attention mechanisms. This approach helps the model capture both local and global image features, which improves its ability to identify subtle differences between real and synthetic images. Compared to traditional detection methods, the proposed approach provides better accuracy and reliability.
+The project demonstrates how advanced deep learning techniques can be applied to address modern challenges in digital media authentication. By successfully analyzing and classifying images, the system contributes to improving trust in digital content. Overall, the proposed system provides an effective solution for detecting AI-generated images and highlights the importance of developing intelligent tools to combat the misuse of artificial intelligence technologies.
+
+\newpage
+\addcontentsline{toc}{chapter}{REFERENCES}
+
+\begin{thebibliography}{13}
+
+
+\sloppy
+\item{A. Dosovitskiy et al., ‘‘Image classification with vision transformers",in Proc. IEEE/CVF Int. Conf. Comput. Vis. (ICCV), Oct. 2020.}
+
+\sloppy
+\item{ J. Redmon, S. Divvala, R. Girshick, and A. Farhadi, ‘‘You only look once:Unified, real-time object detection,’’ in Proc. IEEE Conf. Comput. Vis.
+Pattern Recognit. (CVPR), Jun. 2016, pp. 779–788..}
+
+\sloppy
+\item{Z. Zhang and L. Zhang, ‘‘Digital image forensics: A survey of methods
+and applications,’’ J. Comput. Sci. Technol., 2018..}
+
+\sloppy
+\item{ H. Touvron, M. Cord, M. Douze, F. Massa, A. Sablayrolles, and
+H. Jegou, ‘‘Training data-efficient image transformers & distillation
+through attention,’’ in Proc. Int. Conf. Mach. Learn. (ICML)., 2021,
+pp. 10347–10357.}
+
+\sloppy
+\item{S.McCloskeyandM.Albright,‘‘Detecting GAN-generated imageryusing
+color cues,’’ 2018, arXiv:1812.08247.}
+
+\sloppy
+\item{J. Zhang, W. Xu, J. Liu, and L. Song, ‘‘Detecting deepfake videos with
+CNN-based model,’’ in Proc. IEEE Conf. Comput. Vis. Pattern Recognit.
+(CVPR) Workshops, Jul. 2019, pp. 1–9.}
+
+\sloppy
+\item{A. Dosovitskiy, L. Beyer, A. Kolesnikov, D. Weissenborn, X. Zhai,
+T. Unterthiner, M. Dehghani, M. Minderer, G. Heigold, S. Gelly,
+J. Uszkoreit, and N. Houlsby, ‘‘An image is worth 16×16 words:
+Transformers for image recognition at scale,’’ 2020, arXiv:2010.11929..}
+
+
+
+\end{thebibliography}
+\begin{appendices}
+\chapter{PYTHON SOURCE CODE}
+
+\lstset{
+    basicstyle=\normalsize\ttfamily, % Adjust font size and style
+    breaklines=true, % Enable line breaks
+    breakindent=4ex, % Indent after a line break
+    keywordstyle=\color{blue}, % Style for keywords (optional)
+    commentstyle=\color{gray}, % Style for comments (optional)
+}
+\section*{Vit Training}
+\begin{lstlisting}[language=python]
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+
+# =====================================================
+# IMPORTS
+# =====================================================
+import tensorflow as tf
+from tensorflow.keras import layers, models
+import numpy as np
+from tensorflow.keras.preprocessing import image
+
+# =====================================================
+# CONSTANTS
+# =====================================================
+IMG_SIZE = 224
+PATCH_SIZE = 16
+NUM_PATCHES = (IMG_SIZE // PATCH_SIZE) ** 2
+EMBED_DIM = 64
+NUM_HEADS = 4
+MLP_DIM = 128
+NUM_LAYERS = 4
+BATCH_SIZE = 32
+EPOCHS = 3
+LR = 1e-4
+DATASET_DIR = "dataset"
+MODEL_SAVE_PATH = "vit_tamper_cpu_model.keras"
+
+# =====================================================
+# CUSTOM LAYERS (REGISTERED FOR SAVING/LOADING)
+# =====================================================
+@tf.keras.utils.register_keras_serializable()
+class PatchExtractor(layers.Layer):
+    def __init__(self, patch_size=PATCH_SIZE, **kwargs):
+        super().__init__(**kwargs)
+        self.patch_size = patch_size
+
+    def call(self, images):
+        patches = tf.image.extract_patches(
+            images=images,
+            sizes=[1, self.patch_size, self.patch_size, 1],
+            strides=[1, self.patch_size, self.patch_size, 1],
+            rates=[1, 1, 1, 1],
+            padding="VALID",
+        )
+        patch_dims = patches.shape[-1]
+        patches = tf.reshape(patches, [-1, NUM_PATCHES, patch_dims])
+        return patches
+
+    def get_config(self):
+        config = super().get_config()
+        config.update({"patch_size": self.patch_size})
+        return config
+
+
+@tf.keras.utils.register_keras_serializable()
+class PatchEncoder(layers.Layer):
+    def __init__(self, num_patches=NUM_PATCHES, embed_dim=EMBED_DIM, **kwargs):
+        super().__init__(**kwargs)
+        self.num_patches = num_patches
+        self.embed_dim = embed_dim
+        self.projection = layers.Dense(embed_dim)
+        self.position_embedding = layers.Embedding(
+            input_dim=num_patches,
+            output_dim=embed_dim
+        )
+
+   
+
+
+\end{lstlisting}
+\newpage
+\section*{Forgery Training}
+\begin{lstlisting}[language=python]
+import os
+import cv2
+import numpy as np
+import tensorflow as tf
+from tensorflow.keras.applications import MobileNetV2
+from tensorflow.keras.layers import Dense, Dropout, Flatten
+from tensorflow.keras.models import Model
+from tensorflow.keras.optimizers import Adam
+from tensorflow.keras.callbacks import EarlyStopping
+from sklearn.model_selection import train_test_split
+
+#  CONFIG 
+CASIA_ROOT = "CASIA2"   # - Au , Tp
+IMG_SIZE = 160
+JPEG_QUALITY = 90
+BATCH_SIZE = 16
+EPOCHS = 15
+LEARNING_RATE = 1e-5
+RANDOM_STATE = 42
+
+# PREPROCESSING 
+def compute_fdiff(image_path):
+    img = cv2.imread(image_path)
+    if img is None:
+        raise ValueError("Invalid image")
+
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    img = cv2.resize(img, (IMG_SIZE, IMG_SIZE))
+
+    encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), JPEG_QUALITY]
+    _, enc = cv2.imencode(".jpg", img, encode_param)
+    img_comp = cv2.imdecode(enc, 1)
+    img_comp = cv2.cvtColor(img_comp, cv2.COLOR_BGR2RGB)
+
+    fdiff = cv2.absdiff(img, img_comp)
+    fdiff = fdiff.astype("float32") / 255.0
+    return fdiff
+
+
+\end{lstlisting}
+\newpage
+\section*{Heatmap Prediction}
+\begin{lstlisting}[language=python]
+import tensorflow as tf
+import numpy as np
+import cv2
+import os
+
+# ================= CONFIG =================
+IMG_SIZE = 160
+MODEL_PATH = "forgery_mobilenetv2_trained.h5"
+LAST_CONV_LAYER = "Conv_1"   # MobileNetV2
+IMAGE_PATH = "./Test/set1/a28.jpg"
+SAVE_DIR = "heatmap_results"
+
+os.makedirs(SAVE_DIR, exist_ok=True)
+
+# ================= PREPROCESS =================
+def compute_fdiff(image_path, jpeg_quality=90):
+    img = cv2.imread(image_path)
+    if img is None:
+        raise ValueError("Invalid image path")
+
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    img = cv2.resize(img, (IMG_SIZE, IMG_SIZE))
+
+    encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), jpeg_quality]
+    _, enc = cv2.imencode(".jpg", img, encode_param)
+    img_comp = cv2.imdecode(enc, 1)
+    img_comp = cv2.cvtColor(img_comp, cv2.COLOR_BGR2RGB)
+
+    fdiff = cv2.absdiff(img, img_comp)
+    fdiff = fdiff.astype("float32") / 255.0
+    return img, fdiff
+
+\end{lstlisting}
+\newpage
+\section*{Image Classify}
+\begin{lstlisting}[language=python]
+import sys
+import os
+
+# Disable tensorflow compilation warnings
+os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
+
+#import tensorflow as tf
+import tensorflow.compat.v1 as tf
+
+def predict(root, infile):
+    image_path = infile
+
+    # Read the image_data
+    image_data = tf.gfile.FastGFile(image_path, 'rb').read()
+
+
+    # Loads label file, strips off carriage return
+    label_lines = [line.rstrip() for line
+                   in tf.gfile.GFile(f"{root}/logs/trained_labels.txt")]
+
+    # Unpersists graph from file
+    with tf.gfile.FastGFile(f"{root}/logs/trained_graph.pb", 'rb') as f:
+        graph_def = tf.GraphDef()
+        graph_def.ParseFromString(f.read())
+        _ = tf.import_graph_def(graph_def, name='')
+
+    with tf.Session() as sess:
+        # Feed the image_data as input to the graph and get first prediction
+        softmax_tensor = sess.graph.get_tensor_by_name('final_result:0')
+
+        predictions = sess.run(softmax_tensor, {'DecodeJpeg/contents:0': image_data})
+
+        
+\end{lstlisting}
+
+\chapter{SCREENSHOTS}
+\begin{figure}[!h]
+\centering
+\begin{minipage}{0.45\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{Query.png}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{Test history.png}
+\end{minipage}
+\\[1cm]
+\begin{minipage}{0.8\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{User login.png}
+\end{minipage}
+\end{figure}
+\end{appendices}
+\end{document}
+    

@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Share+Tech+Mono&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-command text-tactical font-mono antialiased;
+  background-image: 
+    linear-gradient(rgba(74, 222, 128, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74, 222, 128, 0.03) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-mono tracking-wider uppercase;
+}
+
+.panel {
+  @apply bg-panel/80 border border-tactical/20 rounded p-4 shadow-md backdrop-blur-md relative overflow-hidden;
+}
+
+/* Fallbacks for neon class usages before they are refactored */
+.text-neon { @apply text-tactical; }
+.border-neon\/30 { @apply border-tactical/30; }
+.border-neon { @apply border-tactical; }
+.bg-neon { @apply bg-tactical; }
+.bg-neon\/10 { @apply bg-tactical/10; }
+.shadow-neon\/10 { @apply shadow-tactical/10; }

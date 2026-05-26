@@ -1,0 +1,57 @@
+ARJUNA'S ARROW: Project Details for Report Generation
+You can copy and paste the following comprehensive project details into Claude AI to generate a high-quality, structured project report.
+
+1. Project Title
+ARJUNA'S ARROW: Invisible Communication. Unbreakable Security.
+
+2. Project Overview
+ARJUNA'S ARROW is a military-grade secure communication web application designed to conceal encrypted audio messages inside standard image files. It combines advanced audio processing (ARSS-inspired spectrogram encoding), robust cryptography (AES-256 + RSA), and randomized Least Significant Bit (LSB) image steganography to create an invisible, tamper-evident communication channel. The application features a thematic "Dark Olive and Amber" military-grade dashboard interface.
+
+3. Technology Stack
+Frontend
+Framework: Next.js 14 (React 18)
+Language: TypeScript
+Styling: Tailwind CSS (PostCSS, Autoprefixer)
+Design Language: Military/Command-center aesthetic (Dark Olive and Amber theme)
+Backend
+Framework: FastAPI (Python)
+Audio Processing: Librosa, Soundfile
+Image Processing & Computer Vision: OpenCV (cv2), NumPy
+Cryptography: cryptography library (AES-GCM, RSA, SHA256), Passlib (PBKDF2-SHA256 for passwords)
+Authentication: JWT (JSON Web Tokens)
+4. Core Modules & Architecture
+4.1. Audio Transform Module (ARSS-Inspired)
+Purpose: Converts raw audio into a compact, manageable data structure.
+Process: Uses librosa to extract the Mel spectrogram (96 mels) and envelope onset strength of the audio. It converts the audio into a log_mel frequency representation.
+Visualization: Generates a visual spectrogram using OpenCV's COLORMAP_TURBO for UI preview.
+Reconstruction: Uses the inverse Mel-to-Audio transformation to rebuild the audio file from the decoded spectrogram.
+4.2. Cryptography & Security Module
+Hybrid Encryption System:
+Generates a new AES-256-GCM session key and 12-byte nonce for every single transmission (perfect forward secrecy per operation).
+The payload (audio spectrogram data) is encrypted with this AES key.
+The AES session key is then encrypted using an RSA-2048 public key.
+Payload Packaging: The encrypted ciphertext, nonce, RSA-encrypted session key, audio metadata, a tamper tag, and a "decoy layer" (labeled "routine image asset cache") are packaged together into a JSON payload.
+Secondary Password Lock: Optional XOR-based bitwise encryption of the session key using a user-provided password.
+4.3. Steganography Module
+Technique: Randomized Least Significant Bit (LSB) substitution.
+Process:
+Takes the JSON payload and converts it into a binary stream.
+Instead of writing sequentially, it uses a random seed (Shared Secret) to generate a pseudo-random sequence of pixel channels (Fisher-Yates shuffle approach).
+Bits are embedded sporadically across the Red, Green, and Blue channels of the cover image, making steganalysis (detecting the hidden message) incredibly difficult.
+Calculates Peak Signal-to-Noise Ratio (PSNR) to measure and display the visual fidelity of the generated stego-image compared to the original.
+4.4. Authentication & Role-Based Access Control (RBAC)
+Roles: Admin, Department (e.g., Signals HQ), and Soldier.
+Hierarchical Comms: Strict communication policies. Soldiers can only communicate with their own Department or Admin. Departments can message their Soldiers and Admins.
+Auth Mechanism: JWT-based session tokens.
+4.5. Tactical Features
+BURN PROTOCOL: A panic button feature. If an operative is compromised, they can engage the burn protocol. It instantly locks their account, logs a critical event, and broadcasts an automated distress signal to the Admin and their respective Department HQ.
+One-Time Audio Retrieval: Transient file storage policy. Once an encoded image is decoded and the audio file is downloaded by the recipient, the server background task immediately deletes the reconstructed audio file from the server disk.
+System Telemetry & Mission Logs: Real-time auditing of logins, encodings, decoding, and security events.
+5. User Flows
+Transmission (Encode): User uploads an Audio file and a Cover Image. They provide a numeric Shared Seed and optionally select a recipient and secondary password. The system processes the audio -> encrypts -> embeds into image -> returns a Stego-Image.
+Reception (Decode): User uploads a Stego-Image and provides the matching Shared Seed. The system extracts bits -> decrypts RSA key -> decrypts AES payload -> reconstructs audio -> returns a playable WAV file.
+6. Prompting Claude AI
+You can use the following prompt with Claude:
+
+"I am working on a software engineering project called ARJUNA'S ARROW. Based on the detailed technical specifications and architecture provided above, please generate a comprehensive and professional Project Report. The report should include an Introduction, Problem Statement, Proposed Solution, System Architecture, Technical Implementation Details (Frontend, Backend, Audio Processing, Cryptography, Steganography), Security Features, and a Conclusion. Please use a formal, academic tone suitable for a university or professional submission."
+
