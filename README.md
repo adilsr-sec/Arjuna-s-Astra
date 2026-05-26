@@ -1,8 +1,8 @@
-# 🏹 Arjuna's Astra
+# Arjuna's Astra
 
 A **military-grade secure communications web application** that hides AES-encrypted audio messages inside images using advanced spectrogram steganography via **ARSS (Audio Steganography using Spectrograms)**.
 
-## 📋 Overview
+##  Overview
 
 Arjuna's Astra is a sophisticated security-first communication platform designed for confidential audio message transmission. It leverages cutting-edge steganography techniques to embed encrypted audio directly into image files, making communications virtually undetectable while maintaining military-grade encryption standards.
 
@@ -12,16 +12,16 @@ Arjuna's Astra is a sophisticated security-first communication platform designed
 - **Spectrogram Analysis**: Advanced ARSS technique for secure audio embedding
 - **Web-Based**: Accessible and user-friendly interface
 
-## ✨ Features
+##  Features
 
-- 🔐 **AES Encryption**: Military-grade encryption for audio messages
-- 🖼️ **Image Steganography**: Embed encrypted audio into images
-- 🔊 **Advanced Spectrogram Technology**: ARSS-based audio hiding
-- 🌐 **Full-Stack Web Application**: TypeScript/JavaScript frontend with Python backend
-- 🛡️ **Security-First Design**: Built with confidentiality in mind
-- 💻 **Cross-Platform**: Works on Windows, macOS, and Linux
+-  **AES Encryption**: Military-grade encryption for audio messages
+-  **Image Steganography**: Embed encrypted audio into images
+-  **Advanced Spectrogram Technology**: ARSS-based audio hiding
+-  **Full-Stack Web Application**: TypeScript/JavaScript frontend with Python backend
+-  **Security-First Design**: Built with confidentiality in mind
+-  **Cross-Platform**: Works on Windows, macOS, and Linux
 
-## 🏗️ Architecture
+##  Architecture
 
 The project follows a modern full-stack architecture:
 
@@ -46,7 +46,7 @@ Arjuna-s-Astra/
 
 **Primary Language**: TypeScript
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### Prerequisites
 - **Node.js** 16+ (for frontend)
@@ -139,7 +139,7 @@ Output: Original Audio Message
 4. Decrypt audio using your AES encryption key
 5. Output: Original audio message revealed
 
-## 🔒 Security Considerations
+##  Security Considerations
 
 ### Encryption
 - **Algorithm**: AES-256 (Advanced Encryption Standard)
@@ -153,25 +153,25 @@ Output: Original Audio Message
 - **Capacity**: Hidden audio size depends on carrier image dimensions
 
 ### Best Practices
-- ✅ Use strong, unique encryption keys
-- ✅ Implement secure key storage mechanisms
-- ✅ Never reuse keys across different messages
-- ✅ Validate image integrity before decoding
-- ✅ Sanitize user inputs and uploaded files
-- ✅ Use HTTPS for all data transmission
-- ✅ Implement rate limiting and access controls
-- ⚠️ Be aware of local laws regarding cryptography
+-  Use strong, unique encryption keys
+-  Implement secure key storage mechanisms
+-  Never reuse keys across different messages
+-  Validate image integrity before decoding
+-  Sanitize user inputs and uploaded files
+-  Use HTTPS for all data transmission
+-  Implement rate limiting and access controls
+-  Be aware of local laws regarding cryptography
 
-## 💡 Use Cases
+##  Use Cases
 
-- 🎖️ **Military Communications**: Secure defense and intelligence operations
-- 🏢 **Corporate Confidentiality**: Executive and sensitive business communications
-- 🏛️ **Government Operations**: Inter-agency secure messaging
-- 🔬 **Research**: Audio steganography and cryptography studies
-- 👥 **Privacy Protection**: Individuals concerned with privacy and surveillance
-- 📊 **Data Protection**: Confidential information transmission
+-  **Military Communications**: Secure defense and intelligence operations
+-  **Corporate Confidentiality**: Executive and sensitive business communications
+-  **Government Operations**: Inter-agency secure messaging
+-  **Research**: Audio steganography and cryptography studies
+-  **Privacy Protection**: Individuals concerned with privacy and surveillance
+-  **Data Protection**: Confidential information transmission
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 frontend/
@@ -196,7 +196,7 @@ backend/
 └── README.md
 ```
 
-## 🛠️ Development
+##  Development
 
 ### Frontend Development
 ```bash
@@ -262,7 +262,7 @@ REACT_APP_API_URL=http://localhost:5000
 REACT_APP_DEBUG=true
 ```
 
-## 🤝 Contributing
+##  Contributing
 
 We welcome contributions! Please follow these guidelines:
 
@@ -296,18 +296,18 @@ We welcome contributions! Please follow these guidelines:
 - Write tests for new features
 - Update documentation accordingly
 
-## 📝 License
+##  License
 
 This project is open-source. Please refer to the LICENSE file in the repository for complete licensing information.
 
-## 📞 Support & Issues
+##  Support & Issues
 
 For issues, questions, or suggestions:
-- 🐛 Report bugs via [Issues](https://github.com/adilsr-sec/Arjuna-s-Astra/issues)
-- 💬 Start [Discussions](https://github.com/adilsr-sec/Arjuna-s-Astra/discussions)
-- 📖 Check the [Wiki](https://github.com/adilsr-sec/Arjuna-s-Astra/wiki)
+-  Report bugs via [Issues](https://github.com/adilsr-sec/Arjuna-s-Astra/issues)
+-  Start [Discussions](https://github.com/adilsr-sec/Arjuna-s-Astra/discussions)
+-  Check the [Wiki](https://github.com/adilsr-sec/Arjuna-s-Astra/wiki)
 
-## ⚠️ Legal Disclaimer
+##  Legal Disclaimer
 
 **IMPORTANT**: This tool is provided for educational, research, and authorized security purposes only.
 
@@ -318,7 +318,7 @@ For issues, questions, or suggestions:
 - The developers assume no liability for misuse or legal violations
 - Always obtain proper authorization before using secure communications tools
 
-## 🎯 Roadmap
+##  Roadmap
 
 - [ ] Enhanced UI/UX improvements
 - [ ] Multi-format image support (PNG, JPEG, BMP, etc.)
@@ -333,14 +333,14 @@ For issues, questions, or suggestions:
 - [ ] End-to-end encryption for key exchange
 - [ ] Audit logging and compliance features
 
-## 🔗 Resources
+##  Resources
 
 - [ARSS Audio Steganography](https://www.researchgate.net/publication/268502830_Audio_Steganography_using_Spectrogram)
 - [AES Encryption Standard](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)
 - [Steganography Overview](https://en.wikipedia.org/wiki/Steganography)
 - [OWASP Security Guidelines](https://owasp.org/)
 
-## 📊 Statistics
+##  Statistics
 
 - **Language Composition**: TypeScript (42.3%) | JavaScript (24.9%) | Python (20.6%) | CSS (12.2%)
 - **Repository Type**: Full-Stack Web Application
@@ -349,11 +349,11 @@ For issues, questions, or suggestions:
 
 ---
 
-## 🌟 Acknowledgments
+##  Acknowledgments
 
 Built with dedication to secure and private communications.
 
-**For secure communications, with integrity. 🛡️**
+**For secure communications, with integrity. **
 
 *Last Updated: May 26, 2026*
 *Repository: [adilsr-sec/Arjuna-s-Astra](https://github.com/adilsr-sec/Arjuna-s-Astra)*
